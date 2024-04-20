@@ -11,38 +11,49 @@ const OptionList = [
   },
   {
     id: "en-US",
-    name: "영어",
+    name: "English",
   },
 ];
 
 export const LanguageSelector = ({ setLanguage }: ILanguageSelector) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectLanguage, setSelectLanguage] = useState("한국어");
+  const [selectLanguage, setSelectLanguage] = useState("English");
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
   const onSelectOption = (item: any) => {
-    setLanguage(item.id);
     setSelectLanguage(item.name);
+    setLanguage(item.id);
     setIsOpen((prev) => !prev);
   };
 
+  console.log(selectLanguage);
+
   return (
-    <>
-      <label onClick={handleToggle}>{selectLanguage}</label>
+    <div className="flex flex-col gap-2 content-end cursor-pointer">
+      <label
+        className="w-20 border rounded-lg border-black w-20px p-2 text-center cursor-pointer"
+        onClick={handleToggle}
+      >
+        {selectLanguage}
+      </label>
       {isOpen && (
-        <ul>
+        <ul className="w-20 border rounded-lg border-black w-20px p-2 text-center">
           {OptionList.map((item) => {
             return (
-              <li key={item.id} onClick={() => onSelectOption(item)}>
+              <li
+                className="hover:text-gray-500"
+                key={item.id}
+                onClick={() => onSelectOption(item)}
+              >
                 {item.name}
               </li>
             );
           })}
         </ul>
       )}
-    </>
+    </div>
   );
 };

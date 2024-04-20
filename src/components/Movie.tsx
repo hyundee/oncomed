@@ -22,9 +22,11 @@ export const Movie = () => {
         <div className="font-bold">Loading...</div>
       ) : (
         <>
+          <div className="pb-5">
+            <LanguageSelector setLanguage={setLanguage} />
+          </div>
           {movie && (
             <div>
-              <LanguageSelector setLanguage={setLanguage} />
               <MovieList data={movie.results} language={language} />
               <Pagination
                 currentPage={page}
