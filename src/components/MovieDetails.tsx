@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { IGetMovieDetails, IResults, getMovieDetails } from "../api";
+import { IGetMovieDetails, getMovieDetails } from "../api";
 import { RatingStars } from "./RatingStars";
 
 interface IMovieDetails {
@@ -15,28 +15,35 @@ export const MovieDetails = ({ movieId, language }: IMovieDetails) => {
 
   return (
     <div>
-      {movieDetails && (
-        <div className="grid grid-cols-2">
-          <img
-            className=""
-            src={`https://image.tmdb.org/t/p/w300/${movieDetails.poster_path}`}
-            alt={movieDetails?.title}
-          />
-          <div className="grid grid-cols-1 gap-y-3 content-start text-xl">
-            <div className="text-3xl font-bold text-balance">
-              {movieDetails.title}
+      {isLoading ? (
+        <h2>Loading</h2>
+      ) : (
+        movieDetails && (
+          <div className="flex gap-x-5">
+            <div className="basis-1/3">
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+                alt={movieDetails?.title}
+              />
             </div>
-            <RatingStars rating={movieDetails.vote_average} />
-            {/* <div>{movieDetails.vote_average.toFixed(1)}</div> */}
-            <div>{movieDetails.release_date}</div>
-            <div className="flex gap-5 truncate">
-              {movieDetails.genres.map((g, idx) => (
-                <span key={idx}>{g.name}</span>
-              ))}
+            <div className="basis-2/3 grid grid-cols-1 gap-y-3 content-start text-xl">
+              <div className="text-3xl font-bold text-balance">
+                {movieDetails.title}
+              </div>
+              <RatingStars
+                rating={movieDetails.vote_average}
+                movieId={movieId}
+              />
+              <div>{movieDetails.release_date}</div>
+              <div className="flex gap-5 truncate">
+                {movieDetails.genres.map((g, idx) => (
+                  <span key={idx}>{g.name}</span>
+                ))}
+              </div>
+              <div className="line-clamp-6">{movieDetails.overview}</div>
             </div>
-            <div className="line-clamp-6">{movieDetails.overview}</div>
           </div>
-        </div>
+        )
       )}
     </div>
   );
