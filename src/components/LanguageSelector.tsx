@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ILanguageSelector {
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
@@ -17,19 +17,17 @@ const OptionList = [
 
 export const LanguageSelector = ({ setLanguage }: ILanguageSelector) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectLanguage, setSelectLanguage] = useState("English");
+  const [selectLanguage, setSelectLanguage] = useState(OptionList[1].name);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
   const onSelectOption = (item: any) => {
+    setIsOpen((prev) => !prev);
     setSelectLanguage(item.name);
     setLanguage(item.id);
-    setIsOpen((prev) => !prev);
   };
-
-  console.log(selectLanguage);
 
   return (
     <div className="flex flex-col gap-2 content-end cursor-pointer">
