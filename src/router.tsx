@@ -1,23 +1,18 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import { Movie } from "./components/Movie";
 import App from "./App";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "",
-      element: <App />,
-      children: [
-        {
-          path: "/",
-          element: <Movie />,
-        },
-      ],
-    },
-  ],
+const router = createHashRouter([
   {
-    basename: "/",
-  }
-);
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Movie />,
+      },
+    ],
+  },
+]);
 
 export default router;
