@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/oncomed/static/css/main.0736ea49.css",
+    "main.js": "/oncomed/static/js/main.a6c62b46.js",
+    "index.html": "/oncomed/index.html",
+    "main.0736ea49.css.map": "/oncomed/static/css/main.0736ea49.css.map",
+    "main.a6c62b46.js.map": "/oncomed/static/js/main.a6c62b46.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0736ea49.css",
+    "static/js/main.a6c62b46.js"
+  ]
+}
