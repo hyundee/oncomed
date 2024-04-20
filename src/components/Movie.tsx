@@ -30,8 +30,6 @@ export const Movie = () => {
                 currentPage={page}
                 setCurrentPage={setPage}
                 totalPages={174}
-                pageCount={10}
-                totalMovies={movie.results.length}
               />
             </div>
           )}
