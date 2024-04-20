@@ -7,8 +7,8 @@ interface IRatingStars {
 
 export const RatingStars = ({ rating, movieId }: IRatingStars) => {
   const ratingStar = Number(rating.toFixed(2));
-  const starIds = ["fi1rst", "second", "third", "fourth", "last"]; // 각 별마다 고유 id를 위한
-  const [starWidthArr, setStarWidthArr] = useState([0, 0, 0, 0, 0]); // 별점 초기 상태
+  const starIds = ["fi1rst", "second", "third", "fourth", "last"];
+  const [starWidthArr, setStarWidthArr] = useState([0, 0, 0, 0, 0]);
 
   useEffect(() => {
     const calcStarRates = () => {

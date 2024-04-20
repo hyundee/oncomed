@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { IGetMovieDetails, getMovieDetails } from "../api";
 import { RatingStars } from "./RatingStars";
+import { Loading } from "./Loading";
 
 interface IMovieDetails {
   movieId: number;
@@ -16,7 +17,7 @@ export const MovieDetails = ({ movieId, language }: IMovieDetails) => {
   return (
     <div>
       {isLoading ? (
-        <h2>Loading</h2>
+        <Loading />
       ) : (
         movieDetails && (
           <div className="flex gap-x-5">

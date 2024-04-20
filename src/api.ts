@@ -24,13 +24,6 @@ export interface IGenres {
   name: string;
 }
 
-export interface ISeasons {
-  air_date: string;
-  episode_count: number;
-  overview: string;
-  season_number: number;
-}
-
 export interface IGetMovieDetails {
   backdrop_path: string;
   genres: IGenres[];
@@ -47,40 +40,14 @@ export interface IGetMovieDetails {
   vote_count: number;
 }
 
-// MOVIE API
-// export const getNowPlaying = (language: string) => {
-//   return fetch(
-//     `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=${language}&page=174`
-//   ).then((response) => response.json());
-// };
-
-export const getNowPlaying = async (language: string, page: number) => {
-  const API_KEY = "8d8ef69753e75e7d8a49a7261b364408";
-
-  const url = `${BASE_PATH}/now_playing?api_key=${API_KEY}&language=${language}&page=1${page}`;
-
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("API 호출 중 오류가 발생했습니다.");
-  }
-
-  const data = await response.json();
-  return data;
-};
-
-export const getMovieDetails = (movieId: number, language: string) => {
-  return fetch(
-    `${BASE_PATH}/${movieId}?api_key=${API_KEY}&language=${language}`
+export const getNowPlaying = async (page: number) => {
+  return await fetch(
+    `${BASE_PATH}/now_playing?api_key=${API_KEY}&page=${page}`
   ).then((response) => response.json());
 };
 
-// https://api.themoviedb.org/3/tv/67915?api_key=8d8ef69753e75e7d8a49a7261b364408&language=ko-KR&page=1
-
-// https://api.themoviedb.org/3/search/multi?api_key=8d8ef69753e75e7d8a49a7261b364408&query=dune&include_adult=false&language=en-US&page=1
+export const getMovieDetails = async (movieId: number, language: string) => {
+  return await fetch(
+    `${BASE_PATH}/${movieId}?api_key=${API_KEY}&language=${language}`
+  ).then((response) => response.json());
+};
