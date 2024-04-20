@@ -10,23 +10,31 @@ import { Pagination } from "./Pagination";
 // }
 
 export const Movie = () => {
-  const [language, setLanguage] = useState("ko-KR");
+  const [language, setLanguage] = useState("en-US");
   const [page, setPage] = useState(1);
   const { data: movie, isLoading } = useQuery<IGetData>({
-    queryKey: ["movie", language],
+    queryKey: ["movie", language, page],
     queryFn: () => getNowPlaying(language, page),
   });
-
-  console.log(language);
   return (
-    <div className="p-10">
+    <div className="p-20">
       {isLoading ? (
         <div className="font-bold">Loading...</div>
       ) : (
         <>
-          <LanguageSelector setLanguage={setLanguage} />
-          <MovieList data={movie?.results} />
-          <Pagination page={page} />
+          {movie && (
+            <div>
+              <LanguageSelector setLanguage={setLanguage} />
+              <MovieList data={movie.results} language={language} />
+              <Pagination
+                currentPage={page}
+                setCurrentPage={setPage}
+                totalPages={174}
+                pageCount={10}
+                totalMovies={movie.results.length}
+              />
+            </div>
+          )}
         </>
       )}
     </div>

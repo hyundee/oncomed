@@ -1,9 +1,10 @@
-const API_KEY =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTk3ZTQ5MWVkNmU4MGYwZGUxMmUzNDllYjYwZWE2ZSIsInN1YiI6IjViNjJhOWNmMGUwYTI2N2VlNzAyYjdkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-nEypJq66ar-tr-KtFz-AC910YhdLakTDSM-oeIDLwQ";
+const API_KEY = "8d8ef69753e75e7d8a49a7261b364408";
 const BASE_PATH = "https://api.themoviedb.org/3/movie";
 
 export interface IGetData {
   results: IResults[];
+  total_pages: number;
+  total_results: number;
 }
 
 export interface IResults {
@@ -46,23 +47,6 @@ export interface IGetMovieDetails {
   vote_count: number;
 }
 
-export interface IGetTvDetails {
-  genres: IGenres[];
-  id: number;
-  name: string;
-  overview: string;
-  number_of_episodes: number;
-  number_of_seasons: number;
-  popularity: number;
-  backdrop_path: string;
-  poster_path: string;
-  first_air_date: string;
-  last_air_date: string;
-  seasons: ISeasons[];
-  tagline: string;
-  vote_average: number;
-}
-
 // MOVIE API
 // export const getNowPlaying = (language: string) => {
 //   return fetch(
@@ -91,9 +75,9 @@ export const getNowPlaying = async (language: string, page: number) => {
   return data;
 };
 
-export const getMovieDetails = (movieId: string) => {
+export const getMovieDetails = (movieId: number, language: string) => {
   return fetch(
-    `${BASE_PATH}/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    `${BASE_PATH}/${movieId}?api_key=${API_KEY}&language=${language}`
   ).then((response) => response.json());
 };
 
