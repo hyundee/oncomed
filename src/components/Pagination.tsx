@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 interface IPagination {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
